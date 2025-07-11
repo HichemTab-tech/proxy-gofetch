@@ -13,7 +13,7 @@ import (
 func main() {
 	http.HandleFunc("/fetch", handleFetchProxy)
 	log.Println("Image proxy running at http://localhost:8080/fetch")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":3001", nil))
 }
 
 func handleFetchProxy(w http.ResponseWriter, r *http.Request) {
