@@ -24,6 +24,9 @@ WORKDIR /root/
 # Copy the binary from builder
 COPY --from=builder /app/main .
 
+# Set default value for CORS_ORIGIN
+ENV CORS_ORIGIN="*"
+
 # Expose port 3001
 EXPOSE 3001
 

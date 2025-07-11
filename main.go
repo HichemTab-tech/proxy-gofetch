@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 )
 
-//TIP <p>To run your code, right-click the code and select <b>Run</b>.</p> <p>Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.</p>
+var corsOrigin = os.Getenv("CORS_ORIGIN")
 
 func main() {
 	http.HandleFunc("/fetch", handleFetchProxy)
@@ -46,7 +46,10 @@ func handleFetchProxy(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
 
 	// Set CORS header to allow all
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	if corsOrigin == "" {
+		corsOrigin = "*"
+	}
+	w.Header().Set("Access-Control-Allow-Origin", corsOrigin)
 
 	// Copy the target stream directly to response
 	_, err = io.Copy(w, resp.Body)
