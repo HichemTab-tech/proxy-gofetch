@@ -41,12 +41,14 @@ A simple HTTP proxy server written in Go that fetches content from specified URL
    http://localhost:8080/fetch?url=https://example.com/image.jpg
    ```
 
-### Example
+### Environment Variables
 
-To fetch an image through the proxy:
-```
-<img src="http://localhost:8080/fetch?url=https://example.com/image.jpg">
-```
+- `ALLOWED_DOMAINS`: Comma-separated list of allowed origins. Supports wildcards.
+  ```bash
+  # Examples:
+  ALLOWED_DOMAINS=*.hichemtab-tech.space,*.hichemtab-tech.me
+  ALLOWED_DOMAINS=app.hichemtab-tech.space,api.hichemtab-tech.me
+  ```
 
 To fetch JSON data:
 ```javascript
