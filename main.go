@@ -16,7 +16,11 @@ var allowedRegexPatterns []*regexp.Regexp
 func init() {
 	// Get domains from environment variable
 	domainsEnv := os.Getenv("ALLOWED_DOMAINS")
-	if domainsEnv == "" || domainsEnv == "*" {
+	if domainsEnv == "" {
+		// If ALLOWED_DOMAINS is set to "", disallow all domains
+		allowedDomains = []string{"NO_DOMAIN_ALLOWED"}
+		return
+	} else if domainsEnv == "*" {
 		// If ALLOWED_DOMAINS is set to "*", allow all domains
 		allowedDomains = []string{"*"}
 		return

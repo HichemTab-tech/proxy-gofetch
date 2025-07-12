@@ -25,7 +25,7 @@ WORKDIR /root/
 COPY --from=builder /app/main .
 
 # Set default value for ALLOWED_DOMAINS
-ENV ALLOWED_DOMAINS="*"
+ENV ALLOWED_DOMAINS=""
 
 # Expose port 3001
 EXPOSE 3001
